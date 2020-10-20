@@ -1,0 +1,37 @@
+﻿<Page
+    x:Class="Blogger1.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Blogger1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data ="using:Blogger1.Models"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+
+
+
+        <GridView Margin="185,218,184,289" ItemsSource="{x:Bind bookViewModel.books}">
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="data:Book">
+                    <StackPanel HorizontalAlignment="Right">
+                        <Image Source="/Assets/Book.png" Width="200" />
+
+                        <!--<Image Width="200" Source="{x:Bind Picture }"></Image>-->
+                        <TextBlock FontSize="16"  Text="{x:Bind Title}"></TextBlock >
+                        <TextBlock FontSize="10" Text="{x:Bind Content}"></TextBlock>
+                        <!--<TextBlock FontSize="15" Foreground="SteelBlue"  Text="{x:Bind summary}"></TextBlock>-->
+                    </StackPanel>
+
+                </DataTemplate>
+            </GridView.ItemTemplate>
+
+
+        </GridView>
+
+        <Button x:Name="DeleteButton" Height="76" FontSize="25" Background="#1cb3bc" CornerRadius="5" FontWeight="Bold"  Content="Logga ut" Foreground="White" RenderTransformOrigin="0.5,0.5" Width="146" Margin="464,829,0,0" VerticalAlignment="Top" Click="DeleteButton_Click"/>
+        
+    </Grid>
+</Page>

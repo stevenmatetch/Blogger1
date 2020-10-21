@@ -20,7 +20,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Blogger1.views
 {
-    public sealed partial class PutDialog : ContentDialog
+    public sealed partial class PutAndPostDialog : ContentDialog
     {
         public BookViewModel bookViewModel { get; set; }
         public APIServices APIServices;
@@ -28,7 +28,7 @@ namespace Blogger1.views
 
         public Book thisBook { get; set; }
 
-        public PutDialog(Book b)
+        public PutAndPostDialog(Book b)
         {
 
             thisBook = b;
@@ -37,8 +37,9 @@ namespace Blogger1.views
             this.InitializeComponent();
         }
 
+        
         /* Skapa ny book */
-        public PutDialog()
+        public PutAndPostDialog()
         {
             thisBook = new Book();
             thisBook.ID = 0;
@@ -47,6 +48,8 @@ namespace Blogger1.views
             APIServices = new APIServices();
             this.InitializeComponent();
         }
+
+     
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {

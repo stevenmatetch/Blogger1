@@ -20,6 +20,7 @@ namespace Blogger1.Services
     {
         static HttpClient httpClient = new HttpClient();
         private static string BooksUrl = "https://localhost:44389/api/books";
+        private static string DeleteBooksUrl = "https://localhost:44389/api/books/";
         public async Task<ObservableCollection<Book>> GetBooksAsync()
         {
             BookViewModel bookViewModel = new BookViewModel();
@@ -62,7 +63,7 @@ namespace Blogger1.Services
         public async Task DeleteBookAsync(Book book)
         {
             var httpClient = new System.Net.Http.HttpClient();
-            await httpClient.DeleteAsync(BooksUrl + book.ID);
+            await httpClient.DeleteAsync(DeleteBooksUrl + book.ID);
         }
       
     }

@@ -120,17 +120,14 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\APIServices.cs" />
-    <Compile Include="views\CreateAndUpdatePage.xaml.cs">
-      <DependentUpon>CreateAndUpdatePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Book.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BookViewModel.cs" />
-    <Compile Include="views\PutDialog.xaml.cs">
-      <DependentUpon>PutDialog.xaml</DependentUpon>
+    <Compile Include="views\PutAndPostDialog.xaml.cs">
+      <DependentUpon>PutAndPostDialog.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -154,15 +151,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="views\CreateAndUpdatePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="views\PutDialog.xaml">
+    <Page Include="views\PutAndPostDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

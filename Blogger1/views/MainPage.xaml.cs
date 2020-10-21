@@ -27,32 +27,37 @@ namespace Blogger1
     public sealed partial class MainPage : Page
     {
         public BookViewModel bookViewModel { get; set; }
-        public APIServices APIServices;
+        public APIServices APIServices { get; set; }
         public Book selectedBook { get; set; }
         
         public MainPage()
 
         {
-            
+          
             bookViewModel = new BookViewModel();
             APIServices = new APIServices();
-            this.InitializeComponent();
-            GetAllbookss();
 
+            this.InitializeComponent();
+            GetAllbooks();
         }
-        public async void GetAllbookss()
+        public async void GetAllbooks()
         {
             BooksGridView.ItemsSource= await APIServices.GetBooksAsync();
         }
 
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        private async void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var select = BooksGridView.SelectedItems;
+            foreach (Book book in select)
+            {
+                bookViewModel.RemoveBook(book);
+                await APIServices.DeleteBookAsync(book);
+            }
         }
 
         private async void PutButton_Click(object sender, RoutedEventArgs e)
         {
-            PutDialog c = new PutDialog(selectedBook);
+            PutAndPostDialog c = new PutAndPostDialog(selectedBook);
 
             c.Closed += C_Closed;            
 
@@ -70,7 +75,7 @@ namespace Blogger1
 
         private async void PostButton_Click(object sender, RoutedEventArgs e)
         {
-            PutDialog c = new PutDialog();
+            PutAndPostDialog c = new PutAndPostDialog();
             c.Closed += C_Closed;
             var res = await c.ShowAsync();
         }

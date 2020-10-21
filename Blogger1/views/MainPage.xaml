@@ -11,14 +11,14 @@
 
     <Grid>
 
-
-        <GridView x:Name="BooksGridView" Margin="185,227,184,280"  SelectedValue="{x:Bind selectedBook, Mode=TwoWay}" >
+        
+        <GridView x:Name="BooksGridView" Margin="185,227,184,280" ItemsSource="{x:Bind bookViewModel.books, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   SelectedValue="{x:Bind selectedBook, Mode=TwoWay}" >
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="data:Book">
                     <StackPanel HorizontalAlignment="Right">
-                        <Image Source="/Assets/Book.png" Width="200" />
+                        <!--<Image Source="/Assets/Book.png" Width="200" />-->
 
-                        <!--<Image Width="200" Source="{x:Bind Picture }"></Image>-->
+                        <Image Width="200" Source="{x:Bind Picture }"></Image>
                         <TextBlock FontSize="16"  Text="{x:Bind Title}"></TextBlock >
                         <TextBlock FontSize="10" Text="{x:Bind Content}"></TextBlock>
                         <TextBlock FontSize="10" Text="{x:Bind Time}"></TextBlock>
@@ -30,12 +30,23 @@
 
 
         </GridView>
+      
 
-        <TextBlock   FontWeight="Bold" Text="Böcker"  FontSize="50" Margin="670,72,494,822"/>
-        <Button x:Name="DeleteButton" Height="76" FontSize="25" Background="#1cb3bc" CornerRadius="5" FontWeight="Bold"  Content="Radera" Foreground="White" RenderTransformOrigin="0.5,0.5" Width="146" Margin="866,796,0,0" VerticalAlignment="Top" Click="DeleteButton_Click"/>
+            <TextBlock   FontWeight="Bold" Text="Böcker" Foreground="Bisque"   FontSize="50" Margin="560,156,748,766"/>
 
-        <Button x:Name="PutButton" Height="76" FontSize="25" Background="#1cb3bc" CornerRadius="5" FontWeight="Bold"  Content="Editera" Foreground="White" RenderTransformOrigin="0.5,0.5" Width="146" Margin="434,796,0,0" VerticalAlignment="Top" Click="PutButton_Click"/>
-        <Button x:Name="PostButton" Height="76" FontSize="25" Background="#1cb3bc" CornerRadius="5" FontWeight="Bold"  Content="Skapa" Foreground="White" RenderTransformOrigin="0.5,0.5" Width="146" Margin="644,796,0,0" VerticalAlignment="Top" Click="PostButton_Click"/>
+       
+       
 
+
+        <Button x:Name="DeleteButton" Height="76" FontSize="25" Background="red" CornerRadius="5" FontWeight="Bold"  Content="Radera" Foreground="White" RenderTransformOrigin="0.5,0.5" Width="146" Margin="874,749,0,0" VerticalAlignment="Top" Click="DeleteButton_Click"/>
+
+        <Button x:Name="PutButton" Height="76" FontSize="25" Background="Yellow" CornerRadius="5" FontWeight="Bold"  Content="Editera" Foreground="White" RenderTransformOrigin="0.5,0.5" Width="146" Margin="436,748,0,0" VerticalAlignment="Top" Click="PutButton_Click"/>
+        <Button x:Name="PostButton" Height="76" FontSize="25" Background="Green" CornerRadius="5" FontWeight="Bold"  Content="Skapa" Foreground="White" RenderTransformOrigin="0.5,0.5" Width="146" Margin="648,748,0,0" VerticalAlignment="Top" Click="PostButton_Click"/>
+            
+            <TextBlock   FontWeight="Bold" Text="Böcker" Foreground="Black"   FontSize="50" Margin="860,69,448,853"/>
+            <CheckBox Content="CheckBox" Margin="147,123,0,0" VerticalAlignment="Top"/>
+            <CheckBox Content="CheckBox" Margin="663,150,0,0" VerticalAlignment="Top"/>
+
+        
     </Grid>
 </Page>

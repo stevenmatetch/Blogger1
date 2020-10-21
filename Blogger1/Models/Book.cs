@@ -49,6 +49,21 @@ namespace Blogger1.Models
                 Published = (long)(value.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
             }
         }
+         public TimeSpan time
+        {
+            get
+            {
+                return new TimeSpan(1970, 1, 1);
+            }
+            set
+            {
+                Published = (long)(value.Subtract(new TimeSpan(1970, 1, 1))).TotalSeconds;
+
+            }
+
+
+
+        }
 
         //public static long GetLongFromDateTime(DateTime tid)
         //{

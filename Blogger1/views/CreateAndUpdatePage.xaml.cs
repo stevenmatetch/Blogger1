@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Blogger1.Models;
+using Blogger1.Services;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,11 +22,24 @@ namespace Blogger1.views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class CreateAndUpdatePdage : Page
+    public sealed partial class CreateAndUpdatePage : Page
     {
-        public CreateAndUpdatePdage()
+        public Book book { get; set; }
+        public APIServices aPIServices;
+        public CreateAndUpdatePage()
         {
             this.InitializeComponent();
+            book = new Book();
+            aPIServices = new APIServices();
+        }
+
+        private async void PostButton_Click(object sender, RoutedEventArgs e)
+        {
+            book.Title = TitleTextBlock.Text;
+            book.Content = ContentTextBlock.Text;
+            book.Picture = PictureTextBlock.Text;
+            book.Published = long.Parse(Publishedtextblock.Text);
+            var b = await aPIServices.AddBookAsync(book);
         }
     }
 }

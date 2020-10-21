@@ -8,13 +8,16 @@ using System.Threading.Tasks;
 
 namespace Blogger1.ViewModels
 {
-   public class BookViewModel
+    public class BookViewModel
     {
         public ObservableCollection<Book> books { get; set; }
-      
+        public Book book { get; set; }
+        public Book selectedBook { get; set; }
+
         public BookViewModel()
         {
             books = new ObservableCollection<Book>();
+         
 
             //DateTime tid = DateTime.Now;
 

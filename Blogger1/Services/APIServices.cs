@@ -1,11 +1,16 @@
 ﻿using Blogger1.Models;
 using Blogger1.ViewModels;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Net.Http.Formatting;
+using System.Net.Http.Headers;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,30 +25,45 @@ namespace Blogger1.Services
             BookViewModel bookViewModel = new BookViewModel();
             var jsonGetBook = await httpClient.GetStringAsync(BooksUrl);
             bookViewModel.books = JsonConvert.DeserializeObject<ObservableCollection<Book>>(jsonGetBook);
+            bookViewModel.books = new ObservableCollection<Book>(bookViewModel.books.OrderBy(b => b.Published));
             return bookViewModel.books;
 
         }
-        public async Task DeleteTestAsync(Book book)
+        public async Task<Book> AddBookAsync(Book b)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                var book = JsonConvert.SerializeObject(b);
+                HttpContent httpContent = new StringContent(book);
+                httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                var result = await client.PostAsync(BooksUrl, httpContent);
+
+                string p = await result.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<Book>(p);
+            }
+
+        }
+        public async Task<Book> PutBookAsync(Book b)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                var book = JsonConvert.SerializeObject(b);
+                HttpContent httpContent = new StringContent(book);
+                httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                var result = await client.PutAsync(BooksUrl + "/" + b.ID.ToString(), httpContent);
+
+                string p = await result.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<Book>(p);
+            }
+
+        }
+        public async Task DeleteBookAsync(Book book)
         {
             var httpClient = new System.Net.Http.HttpClient();
             await httpClient.DeleteAsync(BooksUrl + book.ID);
         }
-        //public async void  PostBooks(StudentsResults results)
-        //{
-        //    var result = JsonConvert.SerializeObject(results);
-        //    HttpContent httpContent = new StringContent(result);
-        //    httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-        //    var responseStatus = await httpClient.PostAsync(PostStudentsResultsUrl, httpContent);
-        //}
-
-        //public async Task<int> PostBooks(List<UserBooking> rooms)
-        //{
-        //    //var json = JsonConvert.SerializeObject(rooms);
-        //    //HttpContent content = new StringContent(json);
-        //    //content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-        //    //var data = await httpClient.PostAsync(new Uri(BookedRoomsUrl), content);
-        //    //return 1;
-
+      
     }
 }

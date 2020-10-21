@@ -1,4 +1,7 @@
-﻿using Blogger1.ViewModels;
+﻿using Blogger1.Models;
+using Blogger1.Services;
+using Blogger1.ViewModels;
+using Blogger1.views;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,16 +27,52 @@ namespace Blogger1
     public sealed partial class MainPage : Page
     {
         public BookViewModel bookViewModel { get; set; }
+        public APIServices APIServices;
+        public Book selectedBook { get; set; }
+        
         public MainPage()
 
         {
+            
             bookViewModel = new BookViewModel();
+            APIServices = new APIServices();
             this.InitializeComponent();
+            GetAllbookss();
+
+        }
+        public async void GetAllbookss()
+        {
+            BooksGridView.ItemsSource= await APIServices.GetBooksAsync();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private async void PutButton_Click(object sender, RoutedEventArgs e)
+        {
+            PutDialog c = new PutDialog(selectedBook);
+
+            c.Closed += C_Closed;            
+
+            var res = await c.ShowAsync();
+
+        }
+
+        private async void C_Closed(ContentDialog sender, ContentDialogClosedEventArgs args)
+        {
+            if (args.Result == ContentDialogResult.Secondary)
+            {
+                BooksGridView.ItemsSource = await APIServices.GetBooksAsync();
+            }
+        }
+
+        private async void PostButton_Click(object sender, RoutedEventArgs e)
+        {
+            PutDialog c = new PutDialog();
+            c.Closed += C_Closed;
+            var res = await c.ShowAsync();
         }
     }
 }

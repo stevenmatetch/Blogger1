@@ -12,8 +12,7 @@
     <Grid>
 
 
-
-        <GridView Margin="185,218,184,289" ItemsSource="{x:Bind bookViewModel.books}">
+        <GridView x:Name="BooksGridView" Margin="185,227,184,280"  SelectedValue="{x:Bind selectedBook, Mode=TwoWay}" >
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="data:Book">
                     <StackPanel HorizontalAlignment="Right">
@@ -22,6 +21,7 @@
                         <!--<Image Width="200" Source="{x:Bind Picture }"></Image>-->
                         <TextBlock FontSize="16"  Text="{x:Bind Title}"></TextBlock >
                         <TextBlock FontSize="10" Text="{x:Bind Content}"></TextBlock>
+                        <TextBlock FontSize="10" Text="{x:Bind Time}"></TextBlock>
                         <!--<TextBlock FontSize="15" Foreground="SteelBlue"  Text="{x:Bind summary}"></TextBlock>-->
                     </StackPanel>
 
@@ -31,7 +31,11 @@
 
         </GridView>
 
-        <Button x:Name="DeleteButton" Height="76" FontSize="25" Background="#1cb3bc" CornerRadius="5" FontWeight="Bold"  Content="Logga ut" Foreground="White" RenderTransformOrigin="0.5,0.5" Width="146" Margin="464,829,0,0" VerticalAlignment="Top" Click="DeleteButton_Click"/>
-        
+        <TextBlock   FontWeight="Bold" Text="Böcker"  FontSize="50" Margin="670,72,494,822"/>
+        <Button x:Name="DeleteButton" Height="76" FontSize="25" Background="#1cb3bc" CornerRadius="5" FontWeight="Bold"  Content="Radera" Foreground="White" RenderTransformOrigin="0.5,0.5" Width="146" Margin="866,796,0,0" VerticalAlignment="Top" Click="DeleteButton_Click"/>
+
+        <Button x:Name="PutButton" Height="76" FontSize="25" Background="#1cb3bc" CornerRadius="5" FontWeight="Bold"  Content="Editera" Foreground="White" RenderTransformOrigin="0.5,0.5" Width="146" Margin="434,796,0,0" VerticalAlignment="Top" Click="PutButton_Click"/>
+        <Button x:Name="PostButton" Height="76" FontSize="25" Background="#1cb3bc" CornerRadius="5" FontWeight="Bold"  Content="Skapa" Foreground="White" RenderTransformOrigin="0.5,0.5" Width="146" Margin="644,796,0,0" VerticalAlignment="Top" Click="PostButton_Click"/>
+
     </Grid>
 </Page>

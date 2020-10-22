@@ -23,8 +23,8 @@
         <TextBox x:Name="ContenttextBlock" HorizontalAlignment="Left" Margin="8,-210,0,0" PlaceholderText="Innehåll" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Text="{x:Bind thisBook.Content, Mode=TwoWay}" Grid.ColumnSpan="2"/>
 
         <TextBox x:Name="TitleTextBlock" HorizontalAlignment="Left" Margin="8,-289,0,0" PlaceholderText="Titel"  TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Text="{x:Bind thisBook.Title,Mode=TwoWay}" Grid.ColumnSpan="2"/>
-        <DatePicker Date="{x:Bind thisBook.PublishedDateTime, Mode=TwoWay}" Margin="8,-58,0,0" VerticalAlignment="Top" Grid.Column="1" />
-        <TimePicker Time="{x:Bind thisBook.time, Mode=TwoWay}"  Grid.Column="1" Margin="8,10,0,0" VerticalAlignment="Top">
+        <DatePicker Date="{x:Bind thisBook.PublishedDateTime, Mode=TwoWay}" Margin="8,-58,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <TimePicker Time="{x:Bind thisBook.time, Mode=TwoWay}"  Grid.Column="1" Margin="8,10,0,0" VerticalAlignment="Top" >
             
         </TimePicker>
 

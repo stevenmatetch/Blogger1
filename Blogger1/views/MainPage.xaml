@@ -18,7 +18,7 @@
                     <StackPanel HorizontalAlignment="Right">
                         <!--<Image Source="/Assets/Book.png" Width="200" />-->
 
-                        <Image Width="200" Source="{x:Bind Picture }"></Image>
+                        <Image Width="200" Source="{x:Bind GetPicture }"></Image>
                         <TextBlock FontSize="16"  Text="{x:Bind Title}"></TextBlock >
                         <TextBlock FontSize="10" Text="{x:Bind Content}"></TextBlock>
                         <TextBlock FontSize="10" Text="{x:Bind Time}"></TextBlock>

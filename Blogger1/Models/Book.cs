@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Input;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace Blogger1.Models
 {
@@ -14,6 +15,25 @@ namespace Blogger1.Models
         public string Content { get; set; }
         public long Published { get; set; }
         public string Picture { get; set; }
+
+        public string GetPicture
+        {
+            get
+            {
+                if (Picture == null || Picture == "") return "/Assets/Book.png";
+                
+                try
+                {
+                    BitmapImage bitmapImage =
+                     new BitmapImage(new Uri("ms-appx:///[project-name]" + Picture));
+                    return Picture;
+                } catch
+                {
+                    return "/Assets/Book.png"; ;
+                }
+
+            }
+        }
 
         public Book()
         {
@@ -53,11 +73,38 @@ namespace Blogger1.Models
         {
             get
             {
-                return new TimeSpan(1970, 1, 1);
+
+                // Tiden som ska visas i TimePicker är från midnatt fram till aktuellt klockslag.
+
+                return PublishedDateTime - PublishedDateTime.Date;
+
+                //return new TimeSpan(1970, 1, 1);
             }
             set
             {
-                Published = (long)(value.Subtract(new TimeSpan(1970, 1, 1))).TotalSeconds;
+
+                DateTime nyttdatum = PublishedDateTime.Date.Add(value);
+                Published = (long)(nyttdatum.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+
+
+                //// Nu ska vi räkna om value från TimePicker till UNIX-tiden som är en long
+
+                //// Steg 1. Räkna ut hur många sekunder man har valt i TimePicker
+
+                //int sek = (int)value.TotalSeconds;
+
+                //// Steg 2. Ta bort nuvarande klockslag från datumet som redan är sparat i Published
+
+                //DateTime nuvarandedatum = new DateTime(1970, 1, 1).AddSeconds(Published).Date;
+
+                //// Steg 3. Räkna ut hur många sekunder från 1970-01-01 som har gått fram till det valda datumet (alltså utan klockslaget)
+
+                //long sek2 = (long)(nuvarandedatum.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+
+
+                //// Steg 4. Plussa ihop dem för att få det nya värdet, totalt antal sekunder från 1970 fram till valt datum + antalet sekunder från midnatt till vald tid
+                //Published = (long)sek + sek2;
+
 
             }
 

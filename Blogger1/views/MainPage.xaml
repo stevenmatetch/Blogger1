@@ -12,7 +12,7 @@
     <Grid>
 
         
-        <GridView x:Name="BooksGridView" Margin="185,227,184,280" ItemsSource="{x:Bind bookViewModel.books, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   SelectedValue="{x:Bind selectedBook, Mode=TwoWay}" >
+        <GridView x:Name="BooksGridView" BorderThickness="3" CornerRadius="5" BorderBrush="Gray" Margin="242,83,250,280" ItemsSource="{x:Bind bookViewModel.books, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   SelectedValue="{x:Bind selectedBook, Mode=TwoWay}" >
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="data:Book">
                     <StackPanel HorizontalAlignment="Right">
@@ -32,8 +32,7 @@
         </GridView>
       
 
-            <TextBlock   FontWeight="Bold" Text="Böcker" Foreground="Bisque"   FontSize="50" Margin="560,156,748,766"/>
-
+        
        
        
 
@@ -43,9 +42,9 @@
         <Button x:Name="PutButton" Height="76" FontSize="25" Background="Yellow" CornerRadius="5" FontWeight="Bold"  Content="Editera" Foreground="White" RenderTransformOrigin="0.5,0.5" Width="146" Margin="436,748,0,0" VerticalAlignment="Top" Click="PutButton_Click"/>
         <Button x:Name="PostButton" Height="76" FontSize="25" Background="Green" CornerRadius="5" FontWeight="Bold"  Content="Skapa" Foreground="White" RenderTransformOrigin="0.5,0.5" Width="146" Margin="648,748,0,0" VerticalAlignment="Top" Click="PostButton_Click"/>
             
-            <TextBlock   FontWeight="Bold" Text="Böcker" Foreground="Black"   FontSize="50" Margin="860,69,448,853"/>
-            <CheckBox Content="CheckBox" Margin="147,123,0,0" VerticalAlignment="Top"/>
-            <CheckBox Content="CheckBox" Margin="663,150,0,0" VerticalAlignment="Top"/>
+           
+            
+           
 
         
     </Grid>

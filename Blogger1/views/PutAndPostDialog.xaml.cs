@@ -24,7 +24,7 @@ namespace Blogger1.views
     {
         public BookViewModel bookViewModel { get; set; }
         public APIServices APIServices;
-        //public Book book { get; set; }
+
 
         public Book thisBook { get; set; }
 
@@ -38,7 +38,7 @@ namespace Blogger1.views
         }
 
         
-        /* Skapa ny book */
+        
         public PutAndPostDialog()
         {
             thisBook = new Book();

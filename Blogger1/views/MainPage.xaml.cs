@@ -29,11 +29,11 @@ namespace Blogger1
         public BookViewModel bookViewModel { get; set; }
         public APIServices APIServices { get; set; }
         public Book selectedBook { get; set; }
-        
+
         public MainPage()
 
         {
-          
+
             bookViewModel = new BookViewModel();
             APIServices = new APIServices();
 
@@ -42,24 +42,24 @@ namespace Blogger1
         }
         public async void GetAllbooks()
         {
-            BooksGridView.ItemsSource= await APIServices.GetBooksAsync();
+            //BooksGridView.ItemsSource= await APIServices.GetBooksAsync();
         }
 
         private async void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            var select = BooksGridView.SelectedItems;
-            foreach (Book book in select)
-            {
-                bookViewModel.RemoveBook(book);
-                await APIServices.DeleteBookAsync(book);
-            }
+            //var select = BooksGridView.SelectedItems;
+            //foreach (Book book in select)
+            //{
+            //    bookViewModel.RemoveBook(book);
+            //    await APIServices.DeleteBookAsync(book);
+            //}
         }
 
         private async void PutButton_Click(object sender, RoutedEventArgs e)
         {
             PutAndPostDialog c = new PutAndPostDialog(selectedBook);
 
-            c.Closed += C_Closed;            
+            c.Closed += C_Closed;
 
             var res = await c.ShowAsync();
 
@@ -69,7 +69,7 @@ namespace Blogger1
         {
             if (args.Result == ContentDialogResult.Secondary)
             {
-                BooksGridView.ItemsSource = await APIServices.GetBooksAsync();
+                //BooksGridView.ItemsSource = await APIServices.GetBooksAsync();
             }
         }
 
@@ -78,6 +78,16 @@ namespace Blogger1
             PutAndPostDialog c = new PutAndPostDialog();
             c.Closed += C_Closed;
             var res = await c.ShowAsync();
+        }
+
+        private void DeleteRoomButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteExtraButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

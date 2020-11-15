@@ -10,19 +10,27 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="871*"/>
+            <RowDefinition Height="129*"/>
+        </Grid.RowDefinitions>
 
 
-        <GridView x:Name="BooksGridView" BorderThickness="3" CornerRadius="5" BorderBrush="Gray" Margin="242,83,250,280" ItemsSource="{x:Bind bookViewModel.books, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   SelectedValue="{x:Bind selectedBook, Mode=TwoWay}" >
+        <!--<GridView x:Name="BooksGridView" BorderThickness="3" CornerRadius="5" BorderBrush="Gray" Margin="242,83,250,280" ItemsSource="{x:Bind bookViewModel.books, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   SelectedValue="{x:Bind selectedBook, Mode=TwoWay}" >
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="data:Book">
                     <StackPanel HorizontalAlignment="Right">
-                        <!--<Image Source="/Assets/Book.png" Width="200" />-->
+                        -->
+        <!--<Image Source="/Assets/Book.png" Width="200" />-->
+        <!--
 
                         <Image Width="200" Source="{x:Bind GetPicture }"></Image>
                         <TextBlock FontSize="16"  Text="{x:Bind Title}"></TextBlock >
                         <TextBlock FontSize="10" Text="{x:Bind Content}"></TextBlock>
                         <TextBlock FontSize="10" Text="{x:Bind Time}"></TextBlock>
-                        <!--<TextBlock FontSize="15" Foreground="SteelBlue"  Text="{x:Bind summary}"></TextBlock>-->
+                        -->
+        <!--<TextBlock FontSize="15" Foreground="SteelBlue"  Text="{x:Bind summary}"></TextBlock>-->
+        <!--
                     </StackPanel>
 
                 </DataTemplate>
@@ -41,7 +49,142 @@
 
         <Button x:Name="PutButton" Height="76" FontSize="25" Background="Yellow" CornerRadius="5" FontWeight="Bold"  Content="Editera" Foreground="White" RenderTransformOrigin="0.5,0.5" Width="146" Margin="436,748,0,0" VerticalAlignment="Top" Click="PutButton_Click"/>
         <Button x:Name="PostButton" Height="76" FontSize="25" Background="Green" CornerRadius="5" FontWeight="Bold"  Content="Skapa" Foreground="White" RenderTransformOrigin="0.5,0.5" Width="146" Margin="648,748,0,0" VerticalAlignment="Top" Click="PostButton_Click"/>
-        <TextBlock HorizontalAlignment="Left" FontWeight="SemiBold" FontSize="50"   Margin="648,10,0,0" Text="Böcker" TextWrapping="Wrap" VerticalAlignment="Top" Width="196"/>
+        <TextBlock HorizontalAlignment="Left" FontWeight="SemiBold" FontSize="50"   Margin="648,10,0,0" Text="Böcker" TextWrapping="Wrap" VerticalAlignment="Top" Width="196"/>-->
+
+        <TextBox x:Name="CitySearchTextBox" Width="300" Height="40" Margin="20,47,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" PlaceholderText="Filtrera på stad"/>
+
+
+
+        <Grid x:Name="RoomsGrid" Margin="20,130,640,0" Height="335" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Margin="0,0,0,255" FontWeight="SemiBold" Text="Tillgängliga Böcker:" FontSize="30"/>
+
+            <GridView x:Name="RoomsGridGrid"  IsItemClickEnabled="True"  Margin="0,45,0,0">
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="data:Book">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Padding="3">
+                            <Image Width="110" Height="90" Source=""/>
+                            <TextBlock Text=""/>
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+
+        </Grid>
+
+        <Grid x:Name="ExtraGrid" Margin="20,505,0,0" Height="200" VerticalAlignment="Top" HorizontalAlignment="Left" Width="620">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Width="620" Margin="0,0,0,135" FontWeight="SemiBold" Text="Extra tillägg:" FontSize="30"/>
+
+            <GridView x:Name="ExtraGridGrid"  IsItemClickEnabled="True"  Margin="0,45,0,0">
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="data:Extra">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Padding="3">
+                            <Image Width="110" Height="90" Source=""/>
+                            <TextBlock Text=""/>
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+
+        </Grid>
+
+        <Grid x:Name="YourRoomGrid" Width="160" Height="334" Margin="0,131,465,0" VerticalAlignment="Top" HorizontalAlignment="Right">
+
+            <TextBlock x:Name="YourRoomTextBlock" FontWeight="SemiBold" Text="Dina val:" FontSize="30" Foreground="Black" Margin="0,10,0,277"/>
+
+            <ListView x:Name="ChoisedRoomGidView"  Margin="0,50,4,4" SelectionMode="Single">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="data:Book">
+
+                        <StackPanel x:Name="ChoisedRoomStackPanel" Orientation="Vertical" HorizontalAlignment="Right">
+                            <StackPanel>
+                                <TextBlock x:Name="ChoisedRoomTextBlock"  FontSize="15" Foreground="Black"/>
+                            </StackPanel>
+
+                            <StackPanel>
+                                <TextBlock x:Name="ChoisedRoomPlaceTextBlock"  FontSize="15" Foreground="Black"/>
+                            </StackPanel>
+
+                            <StackPanel x:Name="ChoisedRoomPriceStackPanel">
+                                <TextBlock x:Name="ChoisedRoomPriceTextBlock" Text="{x:Bind Price}" FontSize="15" Foreground="Red"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+
+
+
+        <Grid x:Name="ExtraChoisedGrid" Width="160" Height="334" Margin="0,131,305,0" VerticalAlignment="Top" HorizontalAlignment="Right">
+
+            <ListView x:Name="ExtraGidView"  Margin="0,50,4,4">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="data:Extra">
+
+                        <StackPanel x:Name="ChoisedRoomStackPanel" Orientation="Vertical" HorizontalAlignment="Right">
+                            <StackPanel>
+                                <TextBlock x:Name="ChoisedRoomTextBlock" Text="{x:Bind Name}" FontSize="15" Foreground="Black"/>
+                            </StackPanel>
+
+                            <StackPanel x:Name="ChoisedRoomPriceStackPanel">
+                                <TextBlock x:Name="ChoisedRoomPriceTextBlock" Text="{x:Bind Price}" FontSize="15" Foreground="Red"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+
+
+
+
+        <Grid x:Name="SignedInPersonGrid" Margin="0,30,11,0" Height="90" VerticalAlignment="Top" HorizontalAlignment="Right" Width="619">
+
+            <ListView x:Name="SignedInPersonListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="data:User">
+                        <TextBlock x:Name="SignedInPersonsNameTextBlock" Text="{x:Bind FirstName}" FontSize="20"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+            <Button x:Name="MyBookingsButton" CornerRadius="5" Content="Mina bokningar" FontSize="10" Height="34" Width="99" Margin="0,10,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" />
+            <Button x:Name="LogOutButton" CornerRadius="5" Content="Logga ut" FontSize="15" Height="34" Width="99" Margin="0,48,10,0" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+
+
+
+        </Grid>
+
+
+
+
+        <Button x:Name="SendBookingButton" CornerRadius="5" Content="Avsluta ditt köp!" FontSize="30" Margin="0,613,20,0" VerticalAlignment="Top" Height="68" Width="275" HorizontalAlignment="Right"/>
+        <Button x:Name="DeleteRoomButton" CornerRadius="5" Content="Radera vald rum" FontSize="27" Margin="0,540,20,0" VerticalAlignment="Top" Height="68" Width="275" HorizontalAlignment="Right" Click="DeleteRoomButton_Click"/>
+        <Button x:Name="DeleteExtraButton" CornerRadius="5" Content="Radera vald tillägg" FontSize="27" Margin="1205,467,0,0" Height="68" Width="275" Click="DeleteExtraButton_Click" VerticalAlignment="Top"/>
+
+
+
+        <TextBlock HorizontalAlignment="Right" FontWeight="SemiBold" Margin="0,626,457,0" Text="Att betala:" FontSize="30" TextWrapping="Wrap" VerticalAlignment="Top" Height="47" Width="149"/>
+        <TextBlock x:Name="TotPricetextBlock" HorizontalAlignment="Right" Margin="0,627,317,0" FontSize="30" TextWrapping="Wrap" VerticalAlignment="Top" Height="47" Width="149" />
+
+
+
+
+
+
 
 
 

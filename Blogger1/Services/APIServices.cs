@@ -21,6 +21,7 @@ namespace Blogger1.Services
         static HttpClient httpClient = new HttpClient();
         private static string BooksUrl = "https://localhost:44389/api/books";
         private static string DeleteBooksUrl = "https://localhost:44389/api/books/";
+        private static string AccountUrl = "https://localhost:44389/api/books/";
         public async Task<ObservableCollection<Book>> GetBooksAsync()
         {
             BookViewModel bookViewModel = new BookViewModel();
@@ -45,6 +46,19 @@ namespace Blogger1.Services
             }
 
         }
+        public async Task<User> GetUser(string username, string password)
+        {
+            var user = new User();
+            var account = new Account() { Username = username, Password = password };
+            var json = JsonConvert.SerializeObject(account);
+            HttpContent content = new StringContent(json);
+            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+
+            var data = await httpClient.PostAsync(new Uri(AccountUrl), content);
+            var result = data.Content.ReadAsStringAsync().Result;
+
+            return JsonConvert.DeserializeObject<User>(result);
+        }
         public async Task<Book> PutBookAsync(Book b)
         {
             using (HttpClient client = new HttpClient())
@@ -65,6 +79,7 @@ namespace Blogger1.Services
             var httpClient = new System.Net.Http.HttpClient();
             await httpClient.DeleteAsync(DeleteBooksUrl + book.ID);
         }
-      
+
+
     }
 }

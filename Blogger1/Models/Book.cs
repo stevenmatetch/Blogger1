@@ -8,26 +8,28 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace Blogger1.Models
 {
-   public class Book
+    public class Book
     {
         public int ID { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public long Published { get; set; }
         public string Picture { get; set; }
+        public int Price { get; set; }
 
         public string GetPicture
         {
             get
             {
                 if (Picture == null || Picture == "") return "/Assets/Book.png";
-                
+
                 try
                 {
                     BitmapImage bitmapImage =
                      new BitmapImage(new Uri("ms-appx:///[project-name]" + Picture));
                     return Picture;
-                } catch
+                }
+                catch
                 {
                     return "/Assets/Book.png"; ;
                 }
@@ -39,24 +41,25 @@ namespace Blogger1.Models
         {
 
         }
-        public Book(string title, string content, long published, string picture)
+        public Book(string title, string content, long published, string picture, int price)
         {
             Title = title;
             Content = content;
             Published = published;
             Picture = picture;
+            Price = price;
 
         }
         public string Time
         {
             get
             {
-                
+
                 return new DateTime(1970, 1, 1).AddSeconds(Published).ToString("yyyy-MM-dd HH:mm:ss");
             }
 
         }
-       
+
 
         public DateTimeOffset PublishedDateTime
         {
@@ -69,12 +72,12 @@ namespace Blogger1.Models
                 Published = (long)(value.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
             }
         }
-         public TimeSpan time
+        public TimeSpan time
         {
             get
             {
 
-                
+
 
                 return PublishedDateTime - PublishedDateTime.Date;
 
@@ -86,7 +89,7 @@ namespace Blogger1.Models
                 Published = (long)(nyttdatum.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
 
 
-              
+
 
 
             }
@@ -95,6 +98,6 @@ namespace Blogger1.Models
 
         }
 
-      
+
     }
 }
